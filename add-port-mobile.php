@@ -10,29 +10,24 @@ require 'db_connection.php';
 // POST DATA
 $data = json_decode(file_get_contents("php://input"));
 
-$ID_Pelanggan       = $_POST['ID_Pelanggan'];
-$Alamat    = $_POST['Alamat'];
-$Tanggal_Instalasi      = $_POST['Tanggal_Instalasi'];
-$Layanan     = $_POST['Layanan'];
-$ODP_ID      = $_POST['ODP_ID'];
+$IDPelanggan        = $_POST['ID_Pelanggan'];
+$AlamatPelanggan    = $_POST['Alamat'];
+$TanggalInstalasi   = $_POST['Tanggal_Instalasi'];
+$LayananPelanggan   = $_POST['Layanan'];
+$ODPID              = $_POST['ODP_ID'];
 
-if(isset($data->ID_Pelanggan) 
-	&& isset($data->Alamat) 
-	&& isset($data->Tanggal_Instalasi) 
-	&& isset($data->Layanan) 
-	&& isset($data->ODP_ID) 
-	&& !empty(trim($data->ID_Pelanggan)) 
-	&& !empty(trim($data->Alamat))
-	&& !empty(trim($data->Tanggal_Instalasi))
-	&& !empty(trim($data->Layanan))
-	&& !empty(trim($data->ODP_ID))
+
+if(isset($IDPelanggan) 
+	&& isset($AlamatPelanggan) 
+	&& isset($TanggalInstalasi) 
+	&& isset($LayananPelanggan) 
+	&& isset($ODPID) 
+	&& !empty(trim($IDPelanggan)) 
+	&& !empty(trim($AlamatPelanggan))
+	&& !empty(trim($TanggalInstalasi))
+	&& !empty(trim($LayananPelanggan))
+	&& !empty(trim($ODPID))
 	){
-
-    $IDPelanggan = mysqli_real_escape_string($db_conn, trim($data->ID_Pelanggan));
-    $AlamatPelanggan = mysqli_real_escape_string($db_conn, trim($data->Alamat));
-    $TanggalInstalasi = mysqli_real_escape_string($db_conn, trim($data->Tanggal_Instalasi));
-    $LayananPelanggan = mysqli_real_escape_string($db_conn, trim($data->Layanan));
-    $ODPID = mysqli_real_escape_string($db_conn, trim($data->ODP_ID));
 
     $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`ODP_ID`) 
                                             VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$ODPID')");
