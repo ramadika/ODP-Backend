@@ -27,6 +27,7 @@ if(isset($IDPelanggan)
 	&& !empty(trim($TanggalInstalasi))
 	&& !empty(trim($LayananPelanggan))
 	&& !empty(trim($ODPID))
+	&& ($LayananPelanggan != "Pilih Paket")
 	){
 
     $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`ODP_ID`) 
