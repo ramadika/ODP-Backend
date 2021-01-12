@@ -13,7 +13,7 @@ $ODPID  = $_POST['ODP_ID'];
 $Lat    = $_POST['Latitude'];
 $Long   = $_POST['Longitude'];
 
-if(isset($ODPID) 
+if(!isset($ODPID) 
 	&& isset($Lat) 
 	&& isset($Long)    
 	&& !empty(trim($ODPID)) 

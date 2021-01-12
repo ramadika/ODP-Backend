@@ -10,12 +10,6 @@ require 'db_connection.php';
 // POST DATA
 $data = json_decode(file_get_contents("php://input"));
 
-$ID_Pelanggan       = $_POST['ID_Pelanggan'];
-$Alamat    = $_POST['Alamat'];
-$Tanggal_Instalasi      = $_POST['Tanggal_Instalasi'];
-$Layanan     = $_POST['Layanan'];
-$ODP_ID      = $_POST['ODP_ID'];
-
 if(isset($data->ID_Pelanggan) 
 	&& isset($data->Alamat) 
 	&& isset($data->Tanggal_Instalasi) 
