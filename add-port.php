@@ -33,7 +33,6 @@ if(isset($data->ID_Pelanggan)
     if($insertUser){
         $last_id = mysqli_insert_id($db_conn);
         echo json_encode(["success"=>1,"msg"=>"Data Created.","Port_ID"=>$last_id]);
-        // echo json_encode($insertUser);
     }
     else{
         echo json_encode(["success"=>0,"msg"=>"Data Not Created!"]);

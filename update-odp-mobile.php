@@ -12,13 +12,16 @@ $data = json_decode(file_get_contents("php://input"));
 $ODPID  = $_POST['ODP_ID'];
 $Lat    = $_POST['Latitude'];
 $Long   = $_POST['Longitude'];
+$Kaps   = $_POST['Kapasitas'];
 
-if(!isset($ODPID) 
+if(isset($ODPID) 
 	&& isset($Lat) 
-	&& isset($Long)    
+	&& isset($Long)   
+	&& isset($Kaps)    
 	&& !empty(trim($ODPID)) 
 	&& !empty(trim($Lat))
 	&& !empty(trim($Long))
+	&& !empty(trim($Kaps))
 	){
 
     $GISHref = 'https://www.google.com/maps/?q='.$Lat.','.$Long;
@@ -26,7 +29,11 @@ if(!isset($ODPID)
     
 
     $updateUser = mysqli_query($db_conn,"UPDATE `odp` 
-                                            SET `GIS_href`='$GISHref', `Latitude`='$Lat', `Longitude`='$Long', `Tanggal_Instalasi`='$TanggalInstalasi' 
+                                            SET `GIS_href`='$GISHref', 
+                                            `Latitude`='$Lat', 
+                                            `Longitude`='$Long', 
+                                            `Tanggal_Instalasi`='$TanggalInstalasi', 
+                                            `Kapasitas`='$Kaps' 
                                             WHERE `ODP_ID`='$ODPID'");
     if($updateUser){
         echo json_encode(["success"=>1,"msg"=>"Data Updated.","href"=>$GISHref]);
