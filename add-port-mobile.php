@@ -41,7 +41,7 @@ if(isset($IDPelanggan)
             if($insertUser){
                 $TheODPCapacity = $row['Kapasitas'] - 1;
                 $updateCapacityODP = mysqli_query($db_conn,"UPDATE `odp` 
-                                                        SET `Kapasitas`='$TheODPCapacity' 
+                                                        SET `Kapasitas_After`='$TheODPCapacity' 
                                                         WHERE `ODP_ID`='$ODPID'");
 
                 echo json_encode(["success"=>1,"msg"=>"Data Created.","Port_ID"=>$last_id]);

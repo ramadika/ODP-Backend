@@ -14,6 +14,17 @@ $Lat    = $_POST['Latitude'];
 $Long   = $_POST['Longitude'];
 $Kaps   = $_POST['Kapasitas'];
 
+// $ODPID  = $data->ODP_ID;
+// $Lat    = $data->Latitude;
+// $Long   = $data->Longitude;
+// $Kaps   = $data->Kapasitas;
+
+// $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas, Kapasitas_After FROM `odp` WHERE `ODP_ID`='$ODPID'");
+// $row = mysqli_fetch_array($ODPSelect,MYSQLI_ASSOC);
+// $usedKaps = $row['Kapasitas'] - $row['Kapasitas_After'];
+// $currKaps = $Kaps - $usedKaps;
+// echo json_encode([$usedKaps, $currKaps]);
+
 if(isset($ODPID) 
 	&& isset($Lat) 
 	&& isset($Long)   
@@ -23,6 +34,12 @@ if(isset($ODPID)
 	&& !empty(trim($Long))
 	&& !empty(trim($Kaps))
 	){
+        
+    $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas, Kapasitas_After FROM `odp` WHERE `ODP_ID`='$ODPID'");
+    $row = mysqli_fetch_array($ODPSelect,MYSQLI_ASSOC);
+    $usedKaps = $row['Kapasitas'] - $row['Kapasitas_After'];
+    $oldKaps = (is_string($_POST['Kapasitas']) ? (int)$_POST['Kapasitas'] : 0);
+    $currKaps = $oldKaps - $usedKaps;
 
     $GISHref = 'https://www.google.com/maps/?q='.$Lat.','.$Long;
     $TanggalInstalasi = date("Y-m-d H:i:s");
@@ -33,7 +50,8 @@ if(isset($ODPID)
                                             `Latitude`='$Lat', 
                                             `Longitude`='$Long', 
                                             `Tanggal_Instalasi`='$TanggalInstalasi', 
-                                            `Kapasitas`='$Kaps' 
+                                            `Kapasitas`='$Kaps',
+                                            `Kapasitas_After`='$currKaps' 
                                             WHERE `ODP_ID`='$ODPID'");
     if($updateUser){
         echo json_encode(["success"=>1,"msg"=>"Data Updated.","href"=>$GISHref]);
