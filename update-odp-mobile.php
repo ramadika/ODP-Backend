@@ -14,17 +14,6 @@ $Lat    = $_POST['Latitude'];
 $Long   = $_POST['Longitude'];
 $Kaps   = $_POST['Kapasitas'];
 
-// $ODPID  = $data->ODP_ID;
-// $Lat    = $data->Latitude;
-// $Long   = $data->Longitude;
-// $Kaps   = $data->Kapasitas;
-
-// $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas, Kapasitas_After FROM `odp` WHERE `ODP_ID`='$ODPID'");
-// $row = mysqli_fetch_array($ODPSelect,MYSQLI_ASSOC);
-// $usedKaps = $row['Kapasitas'] - $row['Kapasitas_After'];
-// $currKaps = $Kaps - $usedKaps;
-// echo json_encode([$usedKaps, $currKaps]);
-
 if(isset($ODPID) 
 	&& isset($Lat) 
 	&& isset($Long)   
