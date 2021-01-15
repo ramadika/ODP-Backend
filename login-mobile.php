@@ -7,8 +7,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
+// POST DATA
+$data = json_decode(file_get_contents("php://input"));
+
 $User  = $_POST['Username'];
 $Pass  = $_POST['Password'];
+
+// $User  = $data->Username;
+// $Pass  = $data->Password;
 
 if(isset($User) 
 	&& isset($Pass) 
@@ -18,12 +24,12 @@ if(isset($User)
         
         $userLog = mysqli_query($db_conn,"SELECT * FROM `akun` WHERE `Username`='$User' and `Password`='$Pass'");
         $row = mysqli_fetch_array($userLog,MYSQLI_ASSOC);
-        $last_id = mysqli_insert_id($db_conn);
 
         if(mysqli_num_rows($userLog) > 0){
 
             if ($row['Kode_Pegawai'] == "F0001") {
-                echo json_encode(["success"=>1,"msg"=>"Login Successfully","User_ID"=>$last_id]);
+                $idUser = $row['User_ID'];
+                echo json_encode(["success"=>1,"msg"=>"Login Successfully","User_ID"=>$idUser]);
             }
             else {
                 echo json_encode(["success"=>0,"msg"=>"Don't have Access"]);
