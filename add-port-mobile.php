@@ -29,17 +29,17 @@ if(isset($IDPelanggan)
 	&& ($LayananPelanggan != "Pilih Paket")
 	){
         
-    $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas FROM `odp` WHERE `ODP_ID`='$ODPID'");
+    $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas, Kapasitas_After FROM `odp` WHERE `ODP_ID`='$ODPID'");
     if(mysqli_num_rows($ODPSelect) > 0){
         $row = mysqli_fetch_array($ODPSelect,MYSQLI_ASSOC);
 
-        if ($row['Kapasitas'] > 0) {
+        if ($row['Kapasitas_After'] > 0) {
             $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`ODP_ID`) 
                                                     VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$ODPID')");
             $last_id = mysqli_insert_id($db_conn);
 
             if($insertUser){
-                $TheODPCapacity = $row['Kapasitas'] - 1;
+                $TheODPCapacity = $row['Kapasitas_After'] - 1;
                 $updateCapacityODP = mysqli_query($db_conn,"UPDATE `odp` 
                                                         SET `Kapasitas_After`='$TheODPCapacity' 
                                                         WHERE `ODP_ID`='$ODPID'");
@@ -51,7 +51,7 @@ if(isset($IDPelanggan)
             }
         }
         else{
-            echo json_encode(["Success"=>0, "Message"=>"Empty Port"]);
+            echo json_encode(["Success"=>0, "msg"=>"Empty Port"]);
         }
 
     }
