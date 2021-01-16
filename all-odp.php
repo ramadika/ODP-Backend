@@ -10,9 +10,9 @@ require 'db_connection.php';
 $ODPAll = mysqli_query($db_conn,"SELECT * FROM `odp`");
 if(mysqli_num_rows($ODPAll) > 0){
     $all_ODP = mysqli_fetch_all($ODPAll,MYSQLI_ASSOC);
-    echo json_encode(["success"=>0,"odp"=>$all_ODP]);
+    echo json_encode(["success"=>1,"odp"=>$all_ODP]);
     // echo json_encode($all_ODP);
 }
 else{
-    echo json_encode(["success"=>1]);
+    echo json_encode(["success"=>0]);
 }
