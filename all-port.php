@@ -7,12 +7,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
-$ODPAll = mysqli_query($db_conn,"SELECT odp.*, klasifikasiodp.Klasifikasi_Nama FROM `odp`
-                                    LEFT JOIN `klasifikasiodp` USING(KlasifikasiODP_ID)");
-if(mysqli_num_rows($ODPAll) > 0){
-    $all_ODP = mysqli_fetch_all($ODPAll,MYSQLI_ASSOC);
-    echo json_encode(["success"=>1,"odp"=>$all_ODP]);
-    // echo json_encode($all_ODP);
+$PortView = mysqli_query($db_conn,"SELECT * FROM `port`");
+if(mysqli_num_rows($PortView) > 0){
+    $ThePort = mysqli_fetch_all($PortView,MYSQLI_ASSOC);
+    echo json_encode(["success"=>1,"odp"=>$ThePort]);
+    // echo json_encode($ThePort);
 }
 else{
     echo json_encode(["success"=>0]);

@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
-$ODPCount = mysqli_query($db_conn,"SELECT ODP_ID, COUNT(*) as JumlahODP FROM `odp`");
+$ODPCount = mysqli_query($db_conn,"SELECT COUNT(*) as JumlahODP, SUM(Kapasitas_After) as StandbyPort FROM `odp`");
 if(mysqli_num_rows($ODPCount) > 0){
     $count_ODP = mysqli_fetch_all($ODPCount,MYSQLI_ASSOC);
     echo json_encode(["success"=>1,"countodp"=>$count_ODP]);
