@@ -29,7 +29,8 @@ if(isset($User)
 
             if ($row['Kode_Pegawai'] == "F0001") {
                 $idUser = $row['User_ID'];
-                echo json_encode(["success"=>1,"msg"=>"Login Successfully","User_ID"=>$idUser]);
+                $userToken = md5($idUser);
+                echo json_encode(["success"=>1,"msg"=>"Login Successfully","User_ID"=>$userToken]);
             }
             else {
                 echo json_encode(["success"=>0,"msg"=>"Don't have Access"]);

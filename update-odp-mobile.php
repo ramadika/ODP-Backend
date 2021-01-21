@@ -13,15 +13,18 @@ $ODPID  = $_POST['ODP_ID'];
 $Lat    = $_POST['Latitude'];
 $Long   = $_POST['Longitude'];
 $Kaps   = $_POST['Kapasitas'];
+$UserID = $_POST['User_ID'];
 
 if(isset($ODPID) 
 	&& isset($Lat) 
 	&& isset($Long)   
 	&& isset($Kaps)    
+	&& isset($UserID)    
 	&& !empty(trim($ODPID)) 
 	&& !empty(trim($Lat))
 	&& !empty(trim($Long))
 	&& !empty(trim($Kaps))
+	&& !empty(trim($UserID))
 	){
         
     $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas, Kapasitas_After FROM `odp` WHERE `ODP_ID`='$ODPID'");
@@ -40,7 +43,8 @@ if(isset($ODPID)
                                             `Longitude`='$Long', 
                                             `Tanggal_Instalasi`='$TanggalInstalasi', 
                                             `Kapasitas`='$Kaps',
-                                            `Kapasitas_After`='$currKaps' 
+                                            `Kapasitas_After`='$currKaps',
+                                            `User_ID`='$UserID' 
                                             WHERE `ODP_ID`='$ODPID'");
     if($updateUser){
         echo json_encode(["success"=>1,"msg"=>"Data Updated.","href"=>$GISHref]);
