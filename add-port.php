@@ -15,11 +15,13 @@ if(isset($data->ID_Pelanggan)
 	&& isset($data->Tanggal_Instalasi) 
 	&& isset($data->Layanan) 
 	&& isset($data->ODP_ID) 
+	&& isset($data->User_ID) 
 	&& !empty(trim($data->ID_Pelanggan)) 
 	&& !empty(trim($data->Alamat))
 	&& !empty(trim($data->Tanggal_Instalasi))
 	&& !empty(trim($data->Layanan))
 	&& !empty(trim($data->ODP_ID))
+	&& !empty(trim($data->User_ID))
 	){
     
     $IDPelanggan = mysqli_real_escape_string($db_conn, trim($data->ID_Pelanggan));
@@ -27,6 +29,7 @@ if(isset($data->ID_Pelanggan)
     $TanggalInstalasi = mysqli_real_escape_string($db_conn, trim($data->Tanggal_Instalasi));
     $LayananPelanggan = mysqli_real_escape_string($db_conn, trim($data->Layanan));
     $ODPID = mysqli_real_escape_string($db_conn, trim($data->ODP_ID));
+    $UserID = mysqli_real_escape_string($db_conn, trim($data->User_ID));
         
     $ODPSelect = mysqli_query($db_conn,"SELECT Kapasitas FROM `odp` WHERE `ODP_ID`='$ODPID'");
     if(mysqli_num_rows($ODPSelect) > 0){
@@ -34,8 +37,8 @@ if(isset($data->ID_Pelanggan)
 
         if ($row['Kapasitas'] > 0) {
         
-            $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`ODP_ID`) 
-                                                    VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$ODPID')");
+            $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`ODP_ID`,`User_ID`) 
+                                                    VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$ODPID','$UserID')");
             $last_id = mysqli_insert_id($db_conn);
 
             if($insertUser){
