@@ -10,9 +10,9 @@ require 'db_connection.php';
 // POST DATA
 $data = json_decode(file_get_contents("php://input"));
 
-// $ODPID  = $_POST['ODP_ID'];
+$ODPID  = $_POST['ODP_ID'];
 
-$ODPID  = $data->ODP_ID;
+// $ODPID  = $data->ODP_ID;
 
 $ODPSelect = mysqli_query($db_conn,"SELECT * FROM `port` WHERE `ODP_ID`='$ODPID'");
 if(mysqli_num_rows($ODPSelect) > 0){
