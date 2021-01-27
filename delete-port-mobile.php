@@ -12,6 +12,10 @@ $IDPelanggan        = $_POST['ID_Pelanggan'];
 $ODPID              = $_POST['ODP_ID'];
 $UserID             = $_POST['User_ID'];
 
+// $IDPelanggan        = $data->ID_Pelanggan;
+// $ODPID              = $data->ODP_ID;
+// $UserID             = $data->User_ID;
+
 if(isset($IDPelanggan) 
 	&& isset($ODPID) 
 	&& isset($UserID) 
@@ -28,7 +32,8 @@ if(isset($IDPelanggan)
         if($deleteCust){
             $TheODPCapacity = $row['Kapasitas_After'] + 1;
             $updateCapacityODP = mysqli_query($db_conn,"UPDATE `odp` 
-                                                    SET `Kapasitas_After`='$TheODPCapacity' 
+                                                    SET `Kapasitas_After`='$TheODPCapacity',
+                                                        `User_ID`='$UserID'  
                                                     WHERE `ODP_ID`='$ODPID'");
             echo json_encode(["success"=>1,"msg"=>"Data Deleted"]);
         }
@@ -39,5 +44,5 @@ if(isset($IDPelanggan)
     }
 }
 else{
-    echo json_encode(["success"=>0,"msg"=>"Data Not Found!"]);
+    echo json_encode(["success"=>0,"msg"=>"Please fill all the required fields!"]);
 }
