@@ -10,17 +10,29 @@ require 'db_connection.php';
 $data = json_decode(file_get_contents("php://input"));
 
 $ODPID  = $_POST['ODP_ID'];
+$ODPName    = $_POST['ODP_Name'];
+$ODCName   = $_POST['ODC_Name'];
+$COName   = $_POST['CO_Name'];
+$PowerSignal = $_POST['Power_Signal'];
 $Lat    = $_POST['Latitude'];
 $Long   = $_POST['Longitude'];
 $Kaps   = $_POST['Kapasitas'];
 $UserID = $_POST['User_ID'];
 
 if(isset($ODPID) 
+    && isset($ODPName) 
+    && isset($ODCName)   
+    && isset($COName)    
+    && isset($PowerSignal) 
 	&& isset($Lat) 
 	&& isset($Long)   
 	&& isset($Kaps)    
 	&& isset($UserID)    
 	&& !empty(trim($ODPID)) 
+	&& !empty(trim($ODPName))
+	&& !empty(trim($ODCName))
+	&& !empty(trim($COName))
+	&& !empty(trim($PowerSignal))
 	&& !empty(trim($Lat))
 	&& !empty(trim($Long))
 	&& !empty(trim($Kaps))
@@ -39,6 +51,10 @@ if(isset($ODPID)
 
     $updateUser = mysqli_query($db_conn,"UPDATE `odp` 
                                             SET `GIS_href`='$GISHref', 
+                                            `ODP_Name`='$ODPName', 
+                                            `ODC_Name`='$ODCName', 
+                                            `CO_Name`='$COName', 
+                                            `Power_Signal`='$PowerSignal',
                                             `Latitude`='$Lat', 
                                             `Longitude`='$Long', 
                                             `Tanggal_Instalasi`='$TanggalInstalasi', 
