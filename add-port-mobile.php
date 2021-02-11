@@ -12,8 +12,9 @@ $data = json_decode(file_get_contents("php://input"));
 
 $IDPelanggan        = $_POST['ID_Pelanggan'];
 $AlamatPelanggan    = $_POST['Alamat'];
-$TanggalInstalasi   = $_POST['Tanggal_Instalasi'];
 $LayananPelanggan   = $_POST['Layanan'];
+$PowerSignal        = $_POST['Power_Signal'];
+$SNModem            = $_POST['SN_Modem'];
 $ODPID              = $_POST['ODP_ID'];
 $UserID             = $_POST['User_ID'];
 
@@ -26,14 +27,16 @@ $UserID             = $_POST['User_ID'];
 
 if(isset($IDPelanggan) 
 	&& isset($AlamatPelanggan) 
-	&& isset($TanggalInstalasi) 
 	&& isset($LayananPelanggan) 
+	&& isset($PowerSignal) 
+	&& isset($SNModem) 
 	&& isset($ODPID) 
 	&& isset($UserID) 
 	&& !empty(trim($IDPelanggan)) 
 	&& !empty(trim($AlamatPelanggan))
-	&& !empty(trim($TanggalInstalasi))
 	&& !empty(trim($LayananPelanggan))
+	&& !empty(trim($PowerSignal))
+	&& !empty(trim($SNModem))
 	&& !empty(trim($ODPID))
 	&& !empty(trim($UserID))
 	&& ($LayananPelanggan != "Pilih Paket")
@@ -44,8 +47,9 @@ if(isset($IDPelanggan)
         $row = mysqli_fetch_array($ODPSelect,MYSQLI_ASSOC);
 
         if ($row['Kapasitas_After'] > 0) {
-            $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`ODP_ID`,`User_ID`) 
-                                                    VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$ODPID','$UserID')");
+            $TanggalInstalasi = date("Y-m-d H:i:s");
+            $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`Power_Signal`,`SN_Modem`,`ODP_ID`,`User_ID`) 
+                                                    VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$PowerSignal','$SNModem','$ODPID','$UserID')");
             $last_id = mysqli_insert_id($db_conn);
 
             if($insertUser){
