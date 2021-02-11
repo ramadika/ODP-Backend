@@ -65,7 +65,7 @@ if(isset($IDPelanggan)
             }
         }
         else{
-            echo json_encode(["Success"=>0, "msg"=>"Empty Port"]);
+            echo json_encode(["Success"=>0, "msg"=>"Full Port"]);
         }
 
     }
