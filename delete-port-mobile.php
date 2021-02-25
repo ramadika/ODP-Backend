@@ -31,9 +31,31 @@ if(isset($IDPelanggan)
         $deleteCust = mysqli_query($db_conn,"DELETE FROM `port` WHERE `ID_Pelanggan`='$IDPelanggan'");
         if($deleteCust){
             $TheODPCapacity = $row['Kapasitas_After'] + 1;
+            if($row['Kapasitas'] == 8){
+                if ($TheODPCapacity == 0){
+                    $KlasifikasiODP_ID = 1;
+                } else if ($TheODPCapacity >= 1 && $TheODPCapacity <= 4){
+                    $KlasifikasiODP_ID = 2;
+                } else if ($TheODPCapacity >= 5 && $TheODPCapacity <= 7){
+                    $KlasifikasiODP_ID = 3;
+                } else if ($TheODPCapacity == 8){
+                    $KlasifikasiODP_ID = 4;
+                }
+            } else if ($row['Kapasitas'] == 16){
+                if ($TheODPCapacity == 0){
+                    $KlasifikasiODP_ID = 1;
+                } else if ($TheODPCapacity >= 1 && $TheODPCapacity <= 8){
+                    $KlasifikasiODP_ID = 2;
+                } else if ($TheODPCapacity >= 9 && $TheODPCapacity <= 15){
+                    $KlasifikasiODP_ID = 3;
+                } else if ($TheODPCapacity == 16){
+                    $KlasifikasiODP_ID = 4;
+                }
+            }
             $updateCapacityODP = mysqli_query($db_conn,"UPDATE `odp` 
                                                     SET `Kapasitas_After`='$TheODPCapacity',
-                                                        `User_ID`='$UserID'  
+                                                        `User_ID`='$UserID',
+                                                        `KlasifikasiODP_ID`='$KlasifikasiODP_ID'   
                                                     WHERE `ODP_ID`='$ODPID'");
             echo json_encode(["success"=>1,"msg"=>"Data Deleted"]);
         }
