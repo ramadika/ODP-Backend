@@ -51,9 +51,9 @@ if(isset($ODPID)
     if($row['Kapasitas'] == 8){
         if ($currKaps == 0){
             $KlasifikasiODP_ID = 1;
-        } else if ($currKaps > 0 && $currKaps < 5){
+        } else if ($currKaps >= 1 && $currKaps <= 4){
             $KlasifikasiODP_ID = 2;
-        } else if ($currKaps > 4 && $currKaps < 8){
+        } else if ($currKaps >= 5 && $currKaps <= 7){
             $KlasifikasiODP_ID = 3;
         } else if ($currKaps == 8){
             $KlasifikasiODP_ID = 4;
@@ -61,11 +61,11 @@ if(isset($ODPID)
     } else if ($row['Kapasitas'] == 16){
         if ($currKaps == 0){
             $KlasifikasiODP_ID = 1;
-        } else if ($currKaps > 0 && $currKaps < 9){
+        } else if ($currKaps >= 1 && $currKaps <= 4){
             $KlasifikasiODP_ID = 2;
-        } else if ($currKaps > 8 && $currKaps < 16){
+        } else if ($currKaps >= 5 && $currKaps <= 7){
             $KlasifikasiODP_ID = 3;
-        } else if ($currKaps == 16){
+        } else if ($currKaps == 8){
             $KlasifikasiODP_ID = 4;
         }
     }
@@ -81,6 +81,7 @@ if(isset($ODPID)
                                             `Tanggal_Instalasi`='$TanggalInstalasi', 
                                             `Kapasitas`='$Kaps',
                                             `Kapasitas_After`='$currKaps',
+                                            `KlasifikasiODP_ID`='$KlasifikasiODP_ID',
                                             `User_ID`='$UserID' 
                                             WHERE `ODP_ID`='$ODPID'");
     if($updateUser){

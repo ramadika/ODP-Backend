@@ -57,9 +57,9 @@ if(isset($IDPelanggan)
                 if($row['Kapasitas'] == 8){
                     if ($TheODPCapacity == 0){
                         $KlasifikasiODP_ID = 1;
-                    } else if ($TheODPCapacity > 0 && $TheODPCapacity < 5){
+                    } else if ($TheODPCapacity >= 1 && $TheODPCapacity <= 4){
                         $KlasifikasiODP_ID = 2;
-                    } else if ($TheODPCapacity > 4 && $TheODPCapacity < 8){
+                    } else if ($TheODPCapacity >= 5 && $TheODPCapacity <= 7){
                         $KlasifikasiODP_ID = 3;
                     } else if ($TheODPCapacity == 8){
                         $KlasifikasiODP_ID = 4;
@@ -67,17 +67,17 @@ if(isset($IDPelanggan)
                 } else if ($row['Kapasitas'] == 16){
                     if ($TheODPCapacity == 0){
                         $KlasifikasiODP_ID = 1;
-                    } else if ($TheODPCapacity > 0 && $TheODPCapacity < 9){
+                    } else if ($TheODPCapacity >= 1 && $TheODPCapacity <= 4){
                         $KlasifikasiODP_ID = 2;
-                    } else if ($TheODPCapacity > 8 && $TheODPCapacity < 16){
+                    } else if ($TheODPCapacity >= 5 && $TheODPCapacity <= 7){
                         $KlasifikasiODP_ID = 3;
-                    } else if ($TheODPCapacity == 16){
+                    } else if ($TheODPCapacity == 8){
                         $KlasifikasiODP_ID = 4;
                     }
                 }
                 $updateCapacityODP = mysqli_query($db_conn,"UPDATE `odp` 
                                                         SET `Kapasitas_After`='$TheODPCapacity',
-                                                            `KlasifikasiODP_ID`='$KlasifikasiODP_ID ' 
+                                                            `KlasifikasiODP_ID`='$KlasifikasiODP_ID' 
                                                         WHERE `ODP_ID`='$ODPID'");
 
                 echo json_encode(["success"=>1,"msg"=>"Data Created.","Port_ID"=>$last_id]);
