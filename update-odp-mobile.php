@@ -48,6 +48,27 @@ if(isset($ODPID)
     $GISHref = 'https://www.google.com/maps/?q='.$Lat.','.$Long;
     $TanggalInstalasi = date("Y-m-d H:i:s");
     
+    if($row['Kapasitas'] == 8){
+        if ($currKaps == 0){
+            $KlasifikasiODP_ID = 1;
+        } else if ($currKaps > 0 && $currKaps < 5){
+            $KlasifikasiODP_ID = 2;
+        } else if ($currKaps > 4 && $currKaps < 8){
+            $KlasifikasiODP_ID = 3;
+        } else if ($currKaps == 8){
+            $KlasifikasiODP_ID = 4;
+        }
+    } else if ($row['Kapasitas'] == 16){
+        if ($currKaps == 0){
+            $KlasifikasiODP_ID = 1;
+        } else if ($currKaps > 0 && $currKaps < 9){
+            $KlasifikasiODP_ID = 2;
+        } else if ($currKaps > 8 && $currKaps < 16){
+            $KlasifikasiODP_ID = 3;
+        } else if ($currKaps == 16){
+            $KlasifikasiODP_ID = 4;
+        }
+    }
 
     $updateUser = mysqli_query($db_conn,"UPDATE `odp` 
                                             SET `GIS_href`='$GISHref', 
