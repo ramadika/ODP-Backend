@@ -10,21 +10,21 @@ require 'db_connection.php';
 // POST DATA
 $data = json_decode(file_get_contents("php://input"));
 
-// $IDPelanggan        = $_POST['ID_Pelanggan'];
-// $AlamatPelanggan    = $_POST['Alamat'];
-// $LayananPelanggan   = $_POST['Layanan'];
-// $PowerSignal        = $_POST['Power_Signal'];
-// $SNModem            = $_POST['SN_Modem'];
-// $ODPID              = $_POST['ODP_ID'];
-// $UserID             = $_POST['User_ID'];
+$IDPelanggan        = $_POST['ID_Pelanggan'];
+$AlamatPelanggan    = $_POST['Alamat'];
+$LayananPelanggan   = $_POST['Layanan'];
+$PowerSignal        = $_POST['Power_Signal'];
+$SNModem            = $_POST['SN_Modem'];
+$ODPID              = $_POST['ODP_ID'];
+$UserID             = $_POST['User_ID'];
 
-$IDPelanggan  = $data->ID_Pelanggan;
-$AlamatPelanggan  = $data->Alamat;
-$LayananPelanggan  = $data->Layanan;
-$PowerSignal  = $data->Power_Signal;
-$SNModem  = $data->SN_Modem;
-$ODPID  = $data->ODP_ID;
-$UserID  = $data->User_ID;
+// $IDPelanggan  = $data->ID_Pelanggan;
+// $AlamatPelanggan  = $data->Alamat;
+// $LayananPelanggan  = $data->Layanan;
+// $PowerSignal  = $data->Power_Signal;
+// $SNModem  = $data->SN_Modem;
+// $ODPID  = $data->ODP_ID;
+// $UserID  = $data->User_ID;
 
 if(isset($IDPelanggan) 
 	&& isset($AlamatPelanggan) 

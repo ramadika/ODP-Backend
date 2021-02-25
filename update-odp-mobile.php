@@ -19,6 +19,16 @@ $Long   = $_POST['Longitude'];
 $Kaps   = $_POST['Kapasitas'];
 $UserID = $_POST['User_ID'];
 
+// $ODPID  = $data->ODP_ID;
+// $ODPName  = $data->ODP_Name;
+// $ODCName  = $data->ODC_Name;
+// $COName  = $data->CO_Name;
+// $PowerSignal  = $data->Power_Signal;
+// $Lat  = $data->Latitude;
+// $Long  = $data->Longitude;
+// $Kaps  = $data->Kapasitas;
+// $UserID  = $data->User_ID;
+
 if(isset($ODPID) 
     && isset($ODPName) 
     && isset($ODCName)   
@@ -48,7 +58,7 @@ if(isset($ODPID)
     $GISHref = 'https://www.google.com/maps/?q='.$Lat.','.$Long;
     $TanggalInstalasi = date("Y-m-d H:i:s");
     
-    if($row['Kapasitas'] == 8){
+    if($Kaps == 8){
         if ($currKaps == 0){
             $KlasifikasiODP_ID = 1;
         } else if ($currKaps >= 1 && $currKaps <= 4){
@@ -58,14 +68,14 @@ if(isset($ODPID)
         } else if ($currKaps == 8){
             $KlasifikasiODP_ID = 4;
         }
-    } else if ($row['Kapasitas'] == 16){
+    } else if ($Kaps == 16){
         if ($currKaps == 0){
             $KlasifikasiODP_ID = 1;
         } else if ($currKaps >= 1 && $currKaps <= 4){
             $KlasifikasiODP_ID = 2;
-        } else if ($currKaps >= 5 && $currKaps <= 7){
+        } else if ($currKaps >= 9 && $currKaps <= 15){
             $KlasifikasiODP_ID = 3;
-        } else if ($currKaps == 8){
+        } else if ($currKaps == 16){
             $KlasifikasiODP_ID = 4;
         }
     }
