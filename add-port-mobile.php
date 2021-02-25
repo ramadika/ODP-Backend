@@ -10,20 +10,21 @@ require 'db_connection.php';
 // POST DATA
 $data = json_decode(file_get_contents("php://input"));
 
-$IDPelanggan        = $_POST['ID_Pelanggan'];
-$AlamatPelanggan    = $_POST['Alamat'];
-$LayananPelanggan   = $_POST['Layanan'];
-$PowerSignal        = $_POST['Power_Signal'];
-$SNModem            = $_POST['SN_Modem'];
-$ODPID              = $_POST['ODP_ID'];
-$UserID             = $_POST['User_ID'];
+// $IDPelanggan        = $_POST['ID_Pelanggan'];
+// $AlamatPelanggan    = $_POST['Alamat'];
+// $LayananPelanggan   = $_POST['Layanan'];
+// $PowerSignal        = $_POST['Power_Signal'];
+// $SNModem            = $_POST['SN_Modem'];
+// $ODPID              = $_POST['ODP_ID'];
+// $UserID             = $_POST['User_ID'];
 
-// $IDPelanggan  = $data->ID_Pelanggan;
-// $AlamatPelanggan  = $data->Alamat;
-// $TanggalInstalasi  = $data->Tanggal_Instalasi;
-// $LayananPelanggan  = $data->Layanan;
-// $ODPID  = $data->ODP_ID;
-// $UserID  = $data->User_ID;
+$IDPelanggan  = $data->ID_Pelanggan;
+$AlamatPelanggan  = $data->Alamat;
+$LayananPelanggan  = $data->Layanan;
+$PowerSignal  = $data->Power_Signal;
+$SNModem  = $data->SN_Modem;
+$ODPID  = $data->ODP_ID;
+$UserID  = $data->User_ID;
 
 if(isset($IDPelanggan) 
 	&& isset($AlamatPelanggan) 
@@ -67,11 +68,11 @@ if(isset($IDPelanggan)
                 } else if ($row['Kapasitas'] == 16){
                     if ($TheODPCapacity == 0){
                         $KlasifikasiODP_ID = 1;
-                    } else if ($TheODPCapacity >= 1 && $TheODPCapacity <= 4){
+                    } else if ($TheODPCapacity >= 1 && $TheODPCapacity <= 8){
                         $KlasifikasiODP_ID = 2;
-                    } else if ($TheODPCapacity >= 5 && $TheODPCapacity <= 7){
+                    } else if ($TheODPCapacity >= 9 && $TheODPCapacity <= 15){
                         $KlasifikasiODP_ID = 3;
-                    } else if ($TheODPCapacity == 8){
+                    } else if ($TheODPCapacity == 16){
                         $KlasifikasiODP_ID = 4;
                     }
                 }
