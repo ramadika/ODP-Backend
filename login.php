@@ -19,6 +19,7 @@ if(isset($data->Username)
     
         $User = mysqli_real_escape_string($db_conn, trim($data->Username));
         $Pass = mysqli_real_escape_string($db_conn, trim($data->Password));
+        $Pass = md5($Pass);
 
         $userLog = mysqli_query($db_conn,"SELECT * FROM `akun` WHERE `Username`='$User' and `Password`='$Pass'");
         $row = mysqli_fetch_array($userLog,MYSQLI_ASSOC);
