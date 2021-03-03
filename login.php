@@ -27,11 +27,30 @@ if(isset($data->Username)
         if(!empty($row)){
             $pegCode = $row['Kode_Pegawai'];
             $userToken = md5($pegCode);
+            $verifikasi = $row['verifikasi'];
         }
         
+        // if(mysqli_num_rows($userLog) > 0){
+        //     $user = mysqli_fetch_all($userLog,MYSQLI_ASSOC);
+        //     echo json_encode(["success"=>1,"msg"=>"Login Successfully","user"=>$row,"token"=>$userToken]);
+        // } else {
+        //     $ab = mysqli_num_rows($userLog);
+        //     echo json_encode(["success"=>0,"msg"=>"Incorrect username or password", "a"=>$ab]);
+        // }
+        
         if(mysqli_num_rows($userLog) > 0){
-            $user = mysqli_fetch_all($userLog,MYSQLI_ASSOC);
-            echo json_encode(["success"=>1,"msg"=>"Login Successfully","user"=>$row,"token"=>$userToken]);
+            // echo json_encode(["success"=>1,"msg"=>"Login Successfully","user"=>$row,"token"=>$userToken]);
+
+            if ($verifikasi == "1" || $verifikasi == '1' || $verifikasi == 1) {
+                $user = mysqli_fetch_all($userLog,MYSQLI_ASSOC);
+                echo json_encode(["success"=>1,"msg"=>"Login Successfully","user"=>$row,"token"=>$userToken,"verifikasi"=>$verifikasi]);
+            } 
+            else if ($verifikasi == "2" || $verifikasi == '2' || $verifikasi == 2) {
+                echo json_encode(["success"=>0,"msg"=>"Don't have Access","verifikasi"=>$verifikasi]);
+            }
+            else {
+                echo json_encode(["success"=>0,"msg"=>"Don't have Access","verifikasi"=>$verifikasi]);
+            }
         } else {
             $ab = mysqli_num_rows($userLog);
             echo json_encode(["success"=>0,"msg"=>"Incorrect username or password", "a"=>$ab]);
