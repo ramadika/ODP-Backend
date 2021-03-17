@@ -11,7 +11,7 @@ $curr_date = date("Y-m-d");
 $AdditionDay = mysqli_query($db_conn,"SELECT COUNT(*) AS Installation FROM `port` WHERE `Tanggal_Instalasi`='$curr_date'");
 if(mysqli_num_rows($AdditionDay) > 0){
     $count_AdditionDay = mysqli_fetch_all($AdditionDay,MYSQLI_ASSOC);
-    echo json_encode(["success"=>1,"additionDay"=>$count_AdditionDay]);
+    echo json_encode(["success"=>1,"addDay"=>$count_AdditionDay]);
 }
 else{
     echo json_encode(["success"=>0]);
