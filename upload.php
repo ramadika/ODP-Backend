@@ -22,6 +22,7 @@
         else{
             echo json_encode(["success"=>0,"message"=>"Data Not Uploaded!"]);
         }
+        // echo json_encode(["success"=>1,"message"=>"Data Uploaded.","desc"=>$desc]);
             
     }
     else{
