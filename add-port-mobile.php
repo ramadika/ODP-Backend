@@ -48,6 +48,20 @@ if(isset($IDPelanggan)
         $row = mysqli_fetch_array($ODPSelect,MYSQLI_ASSOC);
 
         if ($row['Kapasitas_After'] > 0) {
+			/*
+				select * from port where odp_id = '$odp_id'
+				mysqli_num_rows selectqueryodp
+				if (row > 0 )
+					select * from port where odp_id = '$odp_id' and port_number = '$port_number'
+					mysqli_num_rows selectqueryport
+					if (row > 0 )
+						echo json_encode(["success"=>0,"msg"=>"Port number have been used!"]);
+					else
+						insert port data to port table and update odp classification
+				else
+					insert port data to port table and update odp classification
+						
+			*/
             $TanggalInstalasi = date("Y-m-d H:i:s");
             $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`Power_Signal`,`SN_Modem`,`ODP_ID`,`User_ID`) 
                                                     VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$PowerSignal','$SNModem','$ODPID','$UserID')");
