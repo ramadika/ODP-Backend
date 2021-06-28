@@ -15,6 +15,7 @@ $AlamatPelanggan    = $_POST['Alamat'];
 $LayananPelanggan   = $_POST['Layanan'];
 $PowerSignal        = $_POST['Power_Signal'];
 $SNModem            = $_POST['SN_Modem'];
+$PortNumber            = $_POST['Port_Number'];
 $ODPID              = $_POST['ODP_ID'];
 $UserID             = $_POST['User_ID'];
 
@@ -23,6 +24,7 @@ $UserID             = $_POST['User_ID'];
 // $LayananPelanggan  = $data->Layanan;
 // $PowerSignal  = $data->Power_Signal;
 // $SNModem  = $data->SN_Modem;
+// $PortNumber  = $data->Port_Number;
 // $ODPID  = $data->ODP_ID;
 // $UserID  = $data->User_ID;
 
@@ -31,6 +33,7 @@ if(isset($IDPelanggan)
 	&& isset($LayananPelanggan) 
 	&& isset($PowerSignal) 
 	&& isset($SNModem) 
+	&& isset($PortNumber) 
 	&& isset($ODPID) 
 	&& isset($UserID) 
 	&& !empty(trim($IDPelanggan)) 
@@ -38,6 +41,7 @@ if(isset($IDPelanggan)
 	&& !empty(trim($LayananPelanggan))
 	&& !empty(trim($PowerSignal))
 	&& !empty(trim($SNModem))
+	&& !empty(trim($PortNumber))
 	&& !empty(trim($ODPID))
 	&& !empty(trim($UserID))
 	&& ($LayananPelanggan != "Pilih Paket")
@@ -63,8 +67,8 @@ if(isset($IDPelanggan)
 						
 			*/
             $TanggalInstalasi = date("Y-m-d H:i:s");
-            $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`Power_Signal`,`SN_Modem`,`ODP_ID`,`User_ID`) 
-                                                    VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$PowerSignal','$SNModem','$ODPID','$UserID')");
+            $insertUser = mysqli_query($db_conn,"INSERT INTO `port`(`ID_Pelanggan`,`Alamat`,`Tanggal_Instalasi`,`Layanan`,`Power_Signal`,`SN_Modem`,`Port_Number`,`ODP_ID`,`User_ID`) 
+                                                    VALUES('$IDPelanggan','$AlamatPelanggan','$TanggalInstalasi','$LayananPelanggan','$PowerSignal','$SNModem','$PortNumber','$ODPID','$UserID')");
             $last_id = mysqli_insert_id($db_conn);
 
             if($insertUser){
